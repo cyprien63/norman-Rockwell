@@ -118,4 +118,32 @@ document.addEventListener('DOMContentLoaded', function() {
         tiltWrapper.addEventListener('touchend', handleLeave);
         tiltWrapper.addEventListener('touchstart', handleEnter, { passive: true });
     }
+
+    // Gérer les téléchargements (Forcer le téléchargement si possible)
+    document.querySelectorAll('[data-download]').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('href');
+            const filename = this.getAttribute('download');
+            
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                const tempLink = document.createElement('a');
+                tempLink.style.display = 'none';
+                tempLink.href = blobUrl;
+                tempLink.download = filename;
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                
+                window.URL.revokeObjectURL(blobUrl);
+                document.body.removeChild(tempLink);
+            } catch (err) {
+                // Fallback (ex: sécurité file:// des navigateurs)
+                window.open(url, '_blank');
+            }
+        });
+    });
 });

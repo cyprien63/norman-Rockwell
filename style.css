@@ -222,9 +222,6 @@ section h2 {
     margin-bottom: 2.5rem;
     font-size: 2.2rem;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 section h2::after {
@@ -373,6 +370,60 @@ section:hover h2::after {
     border-style: solid;
     box-shadow: inset 0 0 15px rgba(139, 69, 19, 0.05);
     transform: scale(1.02);
+}
+
+/* Download Section */
+.download-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: var(--section-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    max-width: 650px;
+    margin: 4rem auto 2rem auto;
+}
+
+.download-section h2 {
+    margin-bottom: 2.5rem;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.dl-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--header-bg-gradient);
+    background-size: 200% 200%;
+    color: var(--header-text) !important;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.dl-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    background-position: 100% 50%;
+}
+
+.dl-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.dl-btn:hover svg {
+    transform: translateY(2px);
 }
 
 footer {
