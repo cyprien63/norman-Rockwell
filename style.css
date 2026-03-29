@@ -1,0 +1,424 @@
+/* Custom variables for theme management */
+:root {
+    --bg-color: #fdfaf6; 
+    --text-color: #3a322e;
+    --header-bg: #8b4513; 
+    --header-bg-gradient: linear-gradient(135deg, #8b4513, #a25f2a, #63300b);
+    --header-text: #ffffff;
+    --section-bg: #ffffff;
+    --heading-color: #63300b; 
+    --border-color: #e8e2da;
+    --story-bg: #fbf5ee; 
+    --shadow: 0 6px 16px rgba(139, 69, 19, 0.06); 
+    --shadow-hover: 0 15px 35px rgba(139, 69, 19, 0.15);
+    --accent-glow: rgba(139, 69, 19, 0.4);
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1614;
+    --text-color: #e6dfd8;
+    --header-bg: #301908;
+    --header-bg-gradient: linear-gradient(135deg, #301908, #4a2912, #1f0f04);
+    --header-text: #f0e6d2;
+    --section-bg: #241e1a;
+    --heading-color: #d8b794;
+    --border-color: #3b322a;
+    --story-bg: #2b231d;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 15px 35px rgba(216, 183, 148, 0.15);
+    --accent-glow: rgba(216, 183, 148, 0.2);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Nunito', 'Arial', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--header-bg);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--heading-color);
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+
+header {
+    background: var(--header-bg-gradient);
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+    color: var(--header-text);
+    text-align: center;
+    padding: 4rem 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glassmorphism particles in header */
+header::before, header::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: floatingParticles 8s infinite ease-in-out alternate;
+    pointer-events: none;
+}
+
+header::before {
+    top: -50px;
+    left: -50px;
+}
+
+header::after {
+    bottom: -50px;
+    right: 10%;
+    animation-delay: -4s;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingParticles {
+    0% { transform: translateY(0) scale(1); opacity: 0.5; }
+    100% { transform: translateY(30px) scale(1.2); opacity: 0.8; }
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    margin: 1rem 0 0;
+    font-style: italic;
+    opacity: 0.9;
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+main {
+    max-width: 950px;
+    margin: 3.5rem auto;
+    padding: 0 2rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    border: none;
+    perspective: 1000px;
+}
+
+.image-wrapper {
+    display: inline-block;
+    border-radius: 12px;
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.main-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: block;
+    transform: translateZ(20px);
+}
+
+section:not(.hero) {
+    background-color: var(--section-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-bottom: 3.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+section:not(.hero):hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--heading-color);
+}
+
+/* Subtle glowing accent line on top of sections */
+section:not(.hero)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--header-bg-gradient);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+section:not(.hero):hover::before {
+    opacity: 1;
+}
+
+section h2 {
+    text-align: center;
+    color: var(--heading-color);
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: var(--heading-color);
+    margin: 12px auto 0;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+section:hover h2::after {
+    width: 60px;
+}
+
+.observation-item, .analysis-item, .discussion-item {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.observation-item:hover, .analysis-item:hover, .discussion-item:hover {
+    transform: translateX(10px);
+}
+
+.observation-item:last-child, .analysis-item:last-child, .discussion-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.observation-item h3, .analysis-item h3, .discussion-item h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.observation-item h3::before, .analysis-item h3::before, .discussion-item h3::before {
+    content: '✦';
+    position: absolute;
+    left: -15px;
+    font-size: 1rem;
+    top: 5px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: var(--heading-color);
+}
+
+.observation-item:hover h3::before, .analysis-item:hover h3::before, .discussion-item:hover h3::before {
+    opacity: 1;
+    left: -20px;
+}
+
+.story {
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+    background-color: var(--story-bg);
+    border-radius: 12px;
+    border-left: 5px solid var(--header-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Beautiful animated shimmer effect on the story text box */
+.story::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.1) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg) translate(-100%, -100%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+[data-theme="dark"] .story::after {
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.story:hover::after {
+    transform: rotate(30deg) translate(100%, 100%);
+}
+
+.story h3 {
+    color: var(--heading-color);
+    margin-top: 0;
+}
+
+.artwork {
+    text-align: center;
+    padding-top: 1.5rem;
+    position: relative;
+}
+
+/* Shattered mirror glowing effect on hover */
+.artwork-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: brightness(0.95);
+}
+
+.artwork-image:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 0 30px var(--accent-glow);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.prompt {
+    font-style: italic;
+    color: var(--text-color);
+    background-color: var(--story-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 1px dashed var(--heading-color);
+    margin-top: 1rem;
+    opacity: 0.9;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.prompt:hover {
+    border-style: solid;
+    box-shadow: inset 0 0 15px rgba(139, 69, 19, 0.05);
+    transform: scale(1.02);
+}
+
+footer {
+    text-align: center;
+    padding: 2.5rem;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    margin-top: 5rem;
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+footer:hover p {
+    opacity: 1;
+}
+
+/* Advanced Scroll Animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, opacity;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 1.5rem;
+        margin: 2.5rem auto;
+    }
+    section:not(.hero) {
+        padding: 2rem 1.5rem;
+    }
+    header h1 {
+        font-size: 2.4rem;
+    }
+    .observation-item:hover, .analysis-item:hover, .discussion-item:hover {
+        transform: none;
+    }
+}
