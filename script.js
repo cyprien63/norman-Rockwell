@@ -69,37 +69,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Effet Tilt (Parallax 3D) sur l'image principale
     const tiltWrapper = document.getElementById('tilt-wrapper');
-    if (tiltWrapper && window.matchMedia('(pointer: fine)').matches) {
+    if (tiltWrapper) {
         
+        const mainImage = tiltWrapper.querySelector('.main-image');
         let ticking = false;
-        tiltWrapper.addEventListener('mousemove', (e) => {
-            if (!ticking) {
+
+        const handleMove = (e) => {
+            if (!ticking && mainImage) {
                 window.requestAnimationFrame(() => {
                     const rect = tiltWrapper.getBoundingClientRect();
-                    const x = e.clientX - rect.left; // Position X dans l'élément
-                    const y = e.clientY - rect.top; // Position Y dans l'élément
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                    const x = clientX - rect.left;
+                    const y = clientY - rect.top;
                     
-                    // Calculer la rotation (de -10deg à +10deg)
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
                     
                     const rotateX = ((y - centerY) / centerY) * -10;
                     const rotateY = ((x - centerX) / centerX) * 10;
                     
-                    tiltWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    mainImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateZ(20px)`;
                     ticking = false;
                 });
                 ticking = true;
             }
-        }, { passive: true });
-        
-        tiltWrapper.addEventListener('mouseleave', () => {
-            tiltWrapper.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            tiltWrapper.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
-        });
+        };
 
-        tiltWrapper.addEventListener('mouseenter', () => {
-            tiltWrapper.style.transition = 'transform 0.1s ease';
-        });
+        const handleLeave = () => {
+            if (mainImage) {
+                mainImage.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateZ(20px)`;
+                mainImage.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            }
+        };
+
+        const handleEnter = () => {
+            if (mainImage) mainImage.style.transition = 'transform 0.1s ease';
+        };
+
+        // Compatibilité Ordinateur
+        tiltWrapper.addEventListener('mousemove', handleMove, { passive: true });
+        tiltWrapper.addEventListener('mouseleave', handleLeave);
+        tiltWrapper.addEventListener('mouseenter', handleEnter);
+
+        // Compatibilité Téléphone (Touch)
+        tiltWrapper.addEventListener('touchmove', handleMove, { passive: true });
+        tiltWrapper.addEventListener('touchend', handleLeave);
+        tiltWrapper.addEventListener('touchstart', handleEnter, { passive: true });
     }
 });
