@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour appliquer le thème
     const applyTheme = (theme) => {
         if (theme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
             if (themeToggle) themeToggle.textContent = 'Mode Clair';
         } else {
-            document.body.removeAttribute('data-theme');
+            document.documentElement.removeAttribute('data-theme');
             if (themeToggle) themeToggle.textContent = 'Mode Sombre';
         }
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Changement de thème au clic
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             const newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
             try { localStorage.setItem('theme', newTheme); } catch(e) {}
@@ -76,21 +76,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     sections.forEach((section, index) => {
         section.classList.add('scroll-reveal');
-        // On peut légèrement décaler l'animation si elles apparaissent en même temps
-        section.style.transitionDelay = `${index * 0.05}s`; 
+        section.style.transitionDelay = `${index * 0.02}s`;
     });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optionnel : ne jouer l'animation qu'une seule fois
-                // observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px"
     });
 
     sections.forEach(section => {

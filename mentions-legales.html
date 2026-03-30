@@ -56,6 +56,14 @@
             box-shadow: var(--shadow-hover);
         }
     </style>
+    <!-- Anti-flash : applique le thème AVANT le rendu de la page -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        })();
+    </script>
 </head>
 
 <body>

@@ -495,14 +495,14 @@ footer:hover .legal-link {
 /* Advanced Scroll Animations */
 .scroll-reveal {
     opacity: 0;
-    transform: translateY(40px) scale(0.98);
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
     will-change: transform, opacity;
 }
 
 .scroll-reveal.visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
 @media (max-width: 768px) {
