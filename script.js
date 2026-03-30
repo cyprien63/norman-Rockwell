@@ -5,27 +5,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Theme toggle (Smooth transition)
     const themeToggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme');
     
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.body.setAttribute('data-theme', 'dark');
-        if (themeToggle) themeToggle.textContent = 'Mode Clair';
+    // Fonction pour appliquer le thème
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            if (themeToggle) themeToggle.textContent = 'Mode Clair';
+        } else {
+            document.body.removeAttribute('data-theme');
+            if (themeToggle) themeToggle.textContent = 'Mode Sombre';
+        }
+
+        // Mettre à jour les liens de navigation pour garder le thème (indispensable pour les fichiers locaux)
+        document.querySelectorAll('a').forEach(a => {
+            const href = a.getAttribute('href');
+            if (href && (href.includes('.html') || href === 'index.html' || href === 'mentions-legales.html')) {
+                const bareHref = href.split('?')[0];
+                a.setAttribute('href', bareHref + '?theme=' + theme);
+            }
+        });
+    };
+
+    // Initialisation du thème au chargement
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentTheme = urlParams.get('theme');
+    
+    if (!currentTheme) {
+        try { currentTheme = localStorage.getItem('theme'); } catch(e) {}
+    }
+    
+    if (!currentTheme) {
+        currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
+    applyTheme(currentTheme);
+
+    // Changement de thème au clic
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const isDark = document.body.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                document.body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                themeToggle.textContent = 'Mode Sombre';
-            } else {
-                document.body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                themeToggle.textContent = 'Mode Clair';
-            }
+            const newTheme = isDark ? 'light' : 'dark';
+            applyTheme(newTheme);
+            try { localStorage.setItem('theme', newTheme); } catch(e) {}
         });
     }
+
+    // Synchronisation du thème entre les onglets (ex: index.html et mentions-legales.html)
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'theme') {
+            applyTheme(e.newValue);
+        }
+    });
 
     // Scroll progress fluide pour les liens internes
     const links = document.querySelectorAll('a[href^="#"]');
