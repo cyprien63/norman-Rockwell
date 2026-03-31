@@ -1,11 +1,161 @@
 // Script pour ajouter des interactions et animations stylisées
 
+// ──────────────────────────────────────────────────────────────────────────────
+//   INJECTION DU CONTENU DEPUIS content.js
+//   Cette fonction lit SITE_CONTENT et remplit tous les éléments du HTML.
+//   Pour modifier un texte, éditez content.js — ne touchez pas à cette fonction.
+// ──────────────────────────────────────────────────────────────────────────────
+function renderContent() {
+    if (typeof SITE_CONTENT === 'undefined') {
+        console.warn('[content] SITE_CONTENT introuvable — vérifiez que content.js est bien chargé avant script.js.');
+        return;
+    }
+
+    const c = SITE_CONTENT;
+
+    // Icône SVG réutilisable pour les boutons de téléchargement
+    const downloadSVG = `<svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+        fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>`;
+
+    // Helper : remplit un élément si il existe
+    const fill = (id, html) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = html;
+    };
+
+    // ── Header ──────────────────────────────────────────────
+    fill('site-title',    c.header.title);
+    fill('site-subtitle', c.header.subtitle);
+
+    // ── Introduction ────────────────────────────────────────
+    fill('intro-heading', c.introduction.heading);
+    fill('intro-text',    c.introduction.text);
+
+    // ── Observation ─────────────────────────────────────────
+    fill('observation-heading', c.observation.heading);
+    fill('observation-items', c.observation.items.map(item => `
+        <div class="observation-item">
+            <h3>${item.subheading}</h3>
+            <p>${item.text}</p>
+        </div>`).join(''));
+
+    // ── Analysis ────────────────────────────────────────────
+    fill('analysis-heading', c.analysis.heading);
+    fill('analysis-items', c.analysis.items.map(item => `
+        <div class="analysis-item">
+            <h3>${item.subheading}</h3>
+            <p>${item.text}</p>
+        </div>`).join(''));
+
+    // ── Discussion ──────────────────────────────────────────
+    fill('discussion-heading', c.discussion.heading);
+    fill('discussion-items', c.discussion.items.map(item => `
+        <div class="discussion-item">
+            <h3>${item.subheading}</h3>
+            <p>${item.text}</p>
+        </div>`).join(''));
+
+    // ── Creative Expression ─────────────────────────────────
+    fill('creative-heading', c.creativeExpression.heading);
+    fill('story-heading',    c.creativeExpression.story.subheading);
+    fill('story-paragraphs', c.creativeExpression.story.paragraphs
+        .map(p => `<p>${p}</p>`).join(''));
+
+    fill('artworks-container', c.creativeExpression.artworks.map(art => `
+        <div class="artwork">
+            <h3>${art.subheading}</h3>
+            <img src="${art.imageSrc}" alt="${art.imageAlt}" class="artwork-image" loading="lazy">
+            <h2>${art.promptLabel}</h2>
+            <p class="prompt">${art.prompt}</p>
+        </div>`).join(''));
+
+    // ── Downloads ───────────────────────────────────────────
+    fill('downloads-heading', c.downloads.heading);
+    fill('download-buttons', c.downloads.buttons.map(btn => `
+        <a href="${btn.href}" download="${btn.filename}" class="dl-btn" data-download>
+            ${downloadSVG}
+            ${btn.label}
+        </a>`).join(''));
+
+    // ── Footer ──────────────────────────────────────────────
+    fill('footer-credits-title', c.footer.creditsTitle);
+    fill('footer-authors', c.footer.authors.map(name => `<li>${name}</li>`).join(''));
+    fill('footer-hosting', c.footer.hostingInfo);
+
+    const legalLink = document.getElementById('footer-legal-link');
+    if (legalLink) {
+        legalLink.textContent = c.footer.legalLabel;
+        legalLink.href        = c.footer.legalHref;
+    }
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Injection du contenu textuel depuis content.js
+    renderContent();
+
     console.log('Site chargé avec succès ! (Animations avancées activées)');
 
-    // Theme toggle (Smooth transition)
+    // ─── Détection et sauvegarde des infos visiteur en localStorage ───────────
+    (function saveVisitorInfo() {
+        try {
+            // Type d'appareil
+            const ua = navigator.userAgent;
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            const isTablet = /iPad|Android(?!.*Mobile)/i.test(ua);
+            const deviceType = isTablet ? 'tablet' : (isMobile ? 'phone' : 'pc');
+
+            // Résolution de l'écran
+            const screenRes = `${window.screen.width}x${window.screen.height}`;
+
+            // Langue du navigateur
+            const lang = navigator.language || navigator.userLanguage || 'inconnu';
+
+            // Préférence de couleur système
+            const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+            // Première visite et dernière visite
+            const now = new Date().toISOString();
+            const firstVisit = localStorage.getItem('firstVisit') || now;
+            if (!localStorage.getItem('firstVisit')) {
+                localStorage.setItem('firstVisit', now);
+            }
+            localStorage.setItem('lastVisit', now);
+
+            // Compteur de visites
+            const visits = parseInt(localStorage.getItem('visitCount') || '0') + 1;
+            localStorage.setItem('visitCount', visits.toString());
+
+            // Sauvegarder toutes les infos
+            localStorage.setItem('deviceType', deviceType);
+            localStorage.setItem('screenResolution', screenRes);
+            localStorage.setItem('browserLanguage', lang);
+            localStorage.setItem('prefersColorScheme', prefersColorScheme);
+
+            console.log(`[Visiteur] Appareil: ${deviceType} | Résolution: ${screenRes} | Langue: ${lang} | Visite n°${visits}`);
+        } catch(e) {
+            // localStorage peut être bloqué dans certains navigateurs en mode privé
+        }
+    })();
+
+    // ─── Gestion du thème (uniquement via localStorage, jamais dans l'URL) ────
     const themeToggle = document.getElementById('theme-toggle');
-    
+
+    // Nettoyer ?theme= de l'URL si présent (sans rechargement)
+    try {
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('theme')) {
+            url.searchParams.delete('theme');
+            window.history.replaceState({}, '', url.pathname + (url.search === '?' ? '' : url.search));
+        }
+    } catch(e) {}
+
     // Fonction pour appliquer le thème
     const applyTheme = (theme) => {
         if (theme === 'dark') {
@@ -15,29 +165,16 @@ document.addEventListener('DOMContentLoaded', function() {
             document.documentElement.removeAttribute('data-theme');
             if (themeToggle) themeToggle.textContent = 'Mode Sombre';
         }
-
-        // Mettre à jour les liens de navigation pour garder le thème (indispensable pour les fichiers locaux)
-        document.querySelectorAll('a').forEach(a => {
-            const href = a.getAttribute('href');
-            if (href && (href.includes('.html') || href === 'index.html' || href === 'mentions-legales.html')) {
-                const bareHref = href.split('?')[0];
-                a.setAttribute('href', bareHref + '?theme=' + theme);
-            }
-        });
+        // Sauvegarder dans localStorage uniquement (pas dans l'URL)
+        try { localStorage.setItem('theme', theme); } catch(e) {}
     };
 
-    // Initialisation du thème au chargement
-    const urlParams = new URLSearchParams(window.location.search);
-    let currentTheme = urlParams.get('theme');
-    
-    if (!currentTheme) {
-        try { currentTheme = localStorage.getItem('theme'); } catch(e) {}
-    }
-    
+    // Initialisation du thème au chargement depuis localStorage uniquement
+    let currentTheme;
+    try { currentTheme = localStorage.getItem('theme'); } catch(e) {}
     if (!currentTheme) {
         currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-
     applyTheme(currentTheme);
 
     // Changement de thème au clic
@@ -46,11 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             const newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            try { localStorage.setItem('theme', newTheme); } catch(e) {}
         });
     }
 
-    // Synchronisation du thème entre les onglets (ex: index.html et mentions-legales.html)
+    // Synchronisation du thème entre les onglets
     window.addEventListener('storage', (e) => {
         if (e.key === 'theme') {
             applyTheme(e.newValue);
