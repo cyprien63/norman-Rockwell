@@ -36,7 +36,7 @@ const SITE_CONTENT = {
         heading: "Observation",
         items: [
             {
-                subheading: "a. Description of the scene",
+                subheading: "a. study the painting carefully",
                 text: `we can see a miror and a little girl who as a magazine
                 on her legs, she is sitting on a red box, there is a broom, a
                 lipstick, a brush next to her next to the miror there is a doll
@@ -44,7 +44,7 @@ const SITE_CONTENT = {
 
             },
             {
-                subheading: "b. The girl and her surroundings",
+                subheading: "b. Describe the girl and her surroundings using the vocabulary provided in the toolbox (girlhood, reflection, intrigued, etc.).",
                 text: `the little girl is intriguet by her reflexion, because she
                 is trying to do the same hair cut that she see in the magazine and
                 tried to her self. the girl want look like the woman in the magazine.
@@ -60,18 +60,18 @@ const SITE_CONTENT = {
         heading: "Analysis",
         items: [
             {
-                subheading: "a. Thoughts and emotions of the girl",
+                subheading: "a. What do you think the girl is thinking or feeling as she looks in the mirror ?",
                 text: `the girl is curious about her reflexion, she is feeling very sad
                 beacause she dindn't make the samehair cut that is in the magazine.
                 she have her head in her hand`,
             },
             {
-                subheading: "b. The environment and storytelling",
+                subheading: "b. How do the background and the way she is sitting or standing help tell the story of the painting?",
                 text: ` she is maybe trying to look like the picture on her legs and
                 have the same haircut with the brush next to her`,
             },
             {
-                subheading: "c. Explored themes",
+                subheading: "c. What themes does this painting explore (identity, transition, self-awareness) ?",
                 text: `For me the little girl is trying to look like the woman in
                 the magazine. she is an a idol`,
             },
@@ -85,14 +85,14 @@ const SITE_CONTENT = {
         heading: "Discussion",
         items: [
             {
-                subheading: "a. Portrayal of a young woman",
+                subheading: "a. How does this painting portray the image of a young woman ?",
                 text: `it a portray of a girl who is worry about her look, this painting
                 is the image of a young woman beacause for me the woman we see in the
                 magazine is the little girl but older. Or because she is doing her own
                 things that she want to do.`,
             },
             {
-                subheading: "b. Comparison with modern representations",
+                subheading: "b. How does this portrayal differ from or align with modern depictions of young women ?",
                 text: `today the girls use social media for compare themselves to other
                 while at the time the girls compare with magazine. Todays girl are more
                 likely to compare themselves to other than back in the days then it was
@@ -101,7 +101,7 @@ const SITE_CONTENT = {
                 would make fun of you for being diffrent`,
             },
             {
-                subheading: "c. Societal expectations",
+                subheading: "c. What can we learn about societal expectations from this artwork ?",
                 text: `We can learn that in our society that the girls  haves a "dress code"
                 for be importante, and that the "dress code" represent how you are, if you
                 are famous, or anythings else. The dress code is for the little girl the
