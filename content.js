@@ -16,7 +16,7 @@ const SITE_CONTENT = {
     //   EN-TÊTE (header)
     // ──────────────────────────────────────────────────────────
     header: {
-        title:    "Girl at a Mirror",
+        title: "Girl at a Mirror",
         subtitle: "Norman Rockwell · 1954",
     },
 
@@ -37,15 +37,18 @@ const SITE_CONTENT = {
         items: [
             {
                 subheading: "a. Description of the scene",
-                text: `We can see a mirror and a little girl who has a magazine on her legs.
-                       She is sitting on a red box; there is a broom, a lipstick, and a brush
-                       next to her. Next to the mirror there is a doll.`,
+                text: `we can see a miror and a little girl who as a magazine
+                on her legs, she is sitting on a red box, there is a broom, a
+                lipstick, a brush next to her next to the miror there is a doll
+                it was thrown away. The doll have a dress aged.`,
+
             },
             {
                 subheading: "b. The girl and her surroundings",
-                text: `The little girl is intrigued by her reflection, because she is trying
-                       to do the same hairstyle that she sees in the magazine and tried to
-                       recreate it herself.`,
+                text: `the little girl is intriguet by her reflexion, because she
+                is trying to do the same hair cut that she see in the magazine and
+                tried to her self. the girl want look like the woman in the magazine.
+                it like a trend.`,
             },
         ],
     },
@@ -58,19 +61,19 @@ const SITE_CONTENT = {
         items: [
             {
                 subheading: "a. Thoughts and emotions of the girl",
-                text: `The girl is curious about her reflection. She is feeling very sad
-                       because she didn't manage to replicate the hairstyle shown in
-                       the magazine.`,
+                text: `the girl is curious about her reflexion, she is feeling very sad
+                beacause she dindn't make the samehair cut that is in the magazine.
+                she have her head in her hand`,
             },
             {
                 subheading: "b. The environment and storytelling",
-                text: `She is maybe trying to look like the picture on her lap and achieve
-                       the same hairstyle using the brush next to her.`,
+                text: ` she is maybe trying to look like the picture on her legs and
+                have the same haircut with the brush next to her`,
             },
             {
                 subheading: "c. Explored themes",
-                text: `For me, the little girl is trying to look like the woman in the magazine,
-                       reflecting a deep desire to conform to an ideal of beauty.`,
+                text: `For me the little girl is trying to look like the woman in
+                the magazine. she is an a idol`,
             },
         ],
     },
@@ -83,24 +86,26 @@ const SITE_CONTENT = {
         items: [
             {
                 subheading: "a. Portrayal of a young woman",
-                text: `It is a portrait of a girl who is worried about her looks. This painting
-                       is the image of a young woman — for me, the woman we see in the magazine
-                       is the little girl but older, or it represents what she wants to become.`,
+                text: `it a portray of a girl who is worry about her look, this painting
+                is the image of a young woman beacause for me the woman we see in the
+                magazine is the little girl but older. Or because she is doing her own
+                things that she want to do.`,
             },
             {
                 subheading: "b. Comparison with modern representations",
-                text: `Today, girls use social media to compare themselves to others, while back
-                       then girls compared themselves to magazine models. Today's girls are more
-                       likely to compare themselves to others than in the past; there was only
-                       one "look" that everyone was expected to follow, and being different
-                       meant being mocked.`,
+                text: `today the girls use social media for compare themselves to other
+                while at the time the girls compare with magazine. Todays girl are more
+                likely to compare themselves to other than back in the days then it was
+                only one mode and everyone should respected it to look cool or just
+                with a identity, if you had something that was orginal everybody
+                would make fun of you for being diffrent`,
             },
             {
                 subheading: "c. Societal expectations",
-                text: `We can learn that in our society, girls face a kind of "dress code" to
-                       be considered important, and that this code represents who you are —
-                       whether you are famous, or anything else. For the little girl, this
-                       dress code is the most important thing in the world.`,
+                text: `We can learn that in our society that the girls  haves a "dress code"
+                for be importante, and that the "dress code" represent how you are, if you
+                are famous, or anythings else. The dress code is for the little girl the
+                thing that is th most important for her.`,
             },
         ],
     },
@@ -114,29 +119,34 @@ const SITE_CONTENT = {
         story: {
             subheading: "Short Story",
             paragraphs: [
-                `In the painting, the girl sits on a red stool. She is in front of a big
-                 mirror and looks at her reflection. On her knees, there is a magazine
-                 featuring an actress. We can see that she compares herself with the
-                 woman in the magazine.`,
+                `In the painting, the girl sits on a red stoul. She is in front a big mirror
+                and she look her reflection.On her knees, there is a magazine with a  actress.
+                We can see that she compares herself with the woman in the magazine. in the
+                room, there is a doll throw on the floor`,
 
-                `She holds her face with her hands, comparing herself to the magazine
-                 photograph as if she is transitioning from child to adult. Back in the
-                 day, looking just like a celebrity meant having a personality you were
-                 supposed to embody. The little girl seems depressed because she doesn't
-                 really like the hairstyle, but she feels she has to do it — or she will
-                 be mocked by the other girls for being different. So the little girl
-                 feels lonely with the hairstyle she has, because she doesn't truly like
-                 it. The self-reflection you project tells a lot about you: if you have
-                 dirty clothes, others think you are dirty or poor. So in the past, and
-                 even today, self-presentation is something to be worried about.`,
+                `She holds her face with her hands, comparing herself to the magazine photograph
+                as if she is transitioning from child to adult. Back in the days looking just
+                like a celebrity means that you had a personality, that you must have. The
+                little girl seems depresed because she don't really like the hair cut but she
+                as to do it or she will be moque by the other girls or childrens for being
+                diffrent than everybody. So the little girl is filling lonely with the hair
+                cut that she has, beacause for me she don't like it. The self reflection that
+                you have is telling a lot of things about you if you have dirty clothes than the
+                other would thinks that you are dirty or poor just by that, so in the past and
+                even today the self reflection is something to be worried about. The doll is
+                on the floor and it seems like a the little girl is throwing away her past and
+                start a new "life" as a young woman. The little is voluntary passing her
+                childish to her old age. The doll seems old because she might have it since
+                when she was born. The little girl is trying to age faster with th doll away
+                from her. She is trying to seem older just with that action.`,
             ],
         },
 
         artworks: [
             {
                 subheading: "Piece of Art",
-                imageSrc:   "fin prompt1.png",
-                imageAlt:   "Shattered Reflection – Prompt 1",
+                imageSrc: "fin prompt1.png",
+                imageAlt: "Shattered Reflection – Prompt 1",
                 promptLabel: "PROMPT :",
                 prompt: `"Create an illustration inspired by the style of <em>Girl at a Mirror</em>.
                          The composition should depict the same girl at multiple stages of her life
@@ -151,8 +161,8 @@ const SITE_CONTENT = {
             },
             {
                 subheading: "Piece of Art",
-                imageSrc:   "fin prompt2.png",
-                imageAlt:   "Shattered Reflection – Prompt 2",
+                imageSrc: "fin prompt2.png",
+                imageAlt: "Shattered Reflection – Prompt 2",
                 promptLabel: "PROMPT :",
                 prompt: `"Change the style to a slightly more modern, hand-drawn look."`,
             },
@@ -166,18 +176,18 @@ const SITE_CONTENT = {
         heading: "Download Images",
         buttons: [
             {
-                label:    "Original Artwork",
-                href:     "Norman-Rockwell-Girl-at-Mirror-1954-1.jpg",
+                label: "Original Artwork",
+                href: "Norman-Rockwell-Girl-at-Mirror-1954-1.jpg",
                 filename: "Original_Norman_Rockwell.jpg",
             },
             {
-                label:    "Generated Art 1",
-                href:     "fin%20prompt1.png",
+                label: "Generated Art 1",
+                href: "fin%20prompt1.png",
                 filename: "Generated_Art_1.png",
             },
             {
-                label:    "Generated Art 2",
-                href:     "fin%20prompt2.png",
+                label: "Generated Art 2",
+                href: "fin%20prompt2.png",
                 filename: "Generated_Art_2.png",
             },
         ],
@@ -194,9 +204,9 @@ const SITE_CONTENT = {
             "Léo Tesutud",
             "Cyprien Pisicchio",
         ],
-        hostingInfo:  "Hosted on GitHub Pages © 2026",
-        legalLabel:   "Mentions Légales",
-        legalHref:    "mentions-legales.html",
+        hostingInfo: "Hosted on GitHub Pages © 2026",
+        legalLabel: "Mentions Légales",
+        legalHref: "mentions-legales.html",
     },
 
 };
