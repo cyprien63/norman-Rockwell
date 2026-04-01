@@ -66,7 +66,7 @@ const SITE_CONTENT = {
                 she have her head in her hand`,
             },
             {
-                subheading: "b. How do the background and the way she is sitting or standing help tell the story of the painting?",
+                subheading: "b. How do the background and the way she is sitting or standing help tell the story of the painting ?",
                 text: ` she is maybe trying to look like the picture on her legs and
                 have the same haircut with the brush next to her`,
             },
